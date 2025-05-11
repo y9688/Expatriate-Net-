@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>شبكة المغترب نت</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #0d47a1;
+            font-size: 32px;
+        }
+        label, input, select {
+            font-size: 18px;
+            margin: 8px;
+        }
+        input[type="text"], select {
+            padding: 10px;
+            width: 250px;
+            border: 2px solid #1565c0;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 30px;
+            font-size: 18px;
+            background-color: #1565c0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .marquee {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #d84315;
+            font-weight: bold;
+        }
+        .card-info {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #bbdefb;
+            border: 2px solid #0d47a1;
+            border-radius: 10px;
+            color: #0d47a1;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #555;
+        }
+        .telegram-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #0088cc;
+            font-weight: bold;
+        }
+        .telegram-link img {
+            width: 24px;
+            height: 24px;
+            margin-left: 8px;
+        }
+        #speedForm {
+            display: none;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>مرحباً بك في شبكة المغترب نت</h1>
+    <div class="marquee">
+        <marquee behavior="scroll" direction="right">استخدم الإنترنت فيما يرضي الله سبحانه وتعالى</marquee>
+    </div>
+
+    <p>يرجى إدخال رمز الكرت</p>
+    
+    <div id="loginForm">
+        <input type="text" id="codeInput" placeholder="ادخل الرمز هنا">
+        <br>
+        <button onclick="login()">دخول</button>
+    </div>
+
+    <div class="card-info" id="cardInfo">
+        <p>تم تسجيل دخولك بنجاح إلى شبكة المغترب نت!</p>
+        <p>رقم الكرت: <span id="cardNumber"></span></p>
+        <p>التاريخ: <span id="today"></span></p>
+        <p>الوقت الآن: <span id="timeNow"></span></p>
+    </div>
+
+    <div id="speedForm">
+        <p>يرجى اختيار السرعة المناسبة</p>
+        <select id="speedSelect">
+            <option value="2 ميجا">2 ميجا</option>
+            <option value="5 ميجا">5 ميجا</option>
+            <option value="10 ميجا">10 ميجا</option>
+            <option value="20 ميجا">20 ميجا</option>
+            <option value="سرعة لحسة لحسة">سرعة لحسة لحسة</option>
+        </select>
+    </div>
+
+    <a class="telegram-link" href="https://t.me/sijaqkharsiub" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+        تابعنا على التليجرام
+    </a>
+
+    <div class="footer">
+        <p>المهندس: حسين رائد السامعي</p>
+        <p>حقوق النشر محفوظة &copy; 2025 - شبكة المغترب نت</p>
+    </div>
+
+    <script>
+        function login() {
+            var code = document.getElementById('codeInput').value;
+            if (code.trim() !== "") {
+                document.getElementById('cardNumber').textContent = code;
+                document.getElementById('cardInfo').style.display = 'block';
+                document.getElementById('loginForm').style.display = 'none';
+
+                setTimeout(function() {
+                    document.getElementById('cardInfo').style.display = 'none';
+                    document.getElementById('speedForm').style.display = 'block';
+                }, 4000);
+            } else {
+                alert("يرجى إدخال رمز الكرت.");
+            }
+        }
+
+        function updateDateTime() {
+            var now = new Date();
+            var date = now.toLocaleDateString('ar-EG');
+            var time = now.toLocaleTimeString('ar-EG');
+            document.getElementById("today").textContent = date;
+            document.getElementById("timeNow").textContent = time;
+        }
+
+        setInterval(updateDateTime, 1000);
+    </script>
+
+</body>
+</html>
